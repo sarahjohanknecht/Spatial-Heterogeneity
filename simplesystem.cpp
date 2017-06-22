@@ -22,8 +22,8 @@ using org_type = std::array<double, 3>;
 //Declare variables ** These can be changed **
 double MUT_RATE=0.01; //standard deviation
 double TOURN_SIZE=5; //size of tournament for tournament selection
-int POP_SIZE=10; //size of population
-int GEN_SIZE=100; //number of generations
+int POP_SIZE=6; //size of population
+int GEN_SIZE=7; //number of generations
 
 int main()
 {
@@ -47,14 +47,12 @@ int main()
 		}
 		
 		world.Insert(next_org);
-	
-		
 	}	
 	
 	//Loop through the generations
 	for(int i=0; i<GEN_SIZE;i++)
 	{		
-		//Use MutatePop function to mutate the organism (using created lamda function)
+		//Use MutatePop function to mutate the organism (using created lambda function)
 		world.MutatePop([] (org_type* org, emp::Random& random) {random.GetRandNormal(0,MUT_RATE); 
 			for(int j=0; j<3; j++){
 				(*org)[j] += random.GetRandNormal(0,MUT_RATE);};
@@ -66,7 +64,8 @@ int main()
 		world.Update();
 	}
 	
-	world.lineageM.WriteDataToFile("lineageData.json");
+	world.lineageM.WriteDataToFile("lineageData1.json");
+	
 }
 	
 	
